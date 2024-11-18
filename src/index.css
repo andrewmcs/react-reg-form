@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.formCard {
+  max-width: 50%;
+}
+.form-group {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+label {
+  text-align: left;
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+
+button {
+  padding-left: 100px;
+}
