@@ -1,47 +1,57 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  // this gives us a password object that we can control the values of 
+  const [password, setPassword] = useState({
+    value: "",
+    isTouched: false,
+  });
+  // setting a default value in useState here
+  const [role, setRole] = useState("role");
+
   return (
     <div className="App">
       <div class="card formCard" >
-      <form>
+        <form>
 
-        <div className="form-group sm">
-          <label for="firstName">First name</label>
-          <input type="firstName" className="form-control" id="firstName" aria-describedby="firstNameHelp" placeholder="First Name"></input>
-        </div>
+          <div className="form-group sm">
+            <label for="firstName">First name</label>
+            <input value={firstName} type="firstName" className="form-control" id="firstName" aria-describedby="firstNameHelp" placeholder="First Name" onChange={(e) => { setFirstName(e.target.value); }}></input>
+          </div>
 
-        <div className="form-group">
-          <label for="lastName">Last name</label>
-          <input type="lastName" className="form-control" id="lastName" aria-describedby="lastNameHelp"
-            placeholder="Last Name"></input>
-        </div>
+          <div className="form-group">
+            <label for="lastName">Last name</label>
+            <input value={lastName} type="lastName" className="form-control" id="lastName" aria-describedby="lastNameHelp"
+              placeholder="Last Name" onChange={(e) => { setLastName(e.target.value); }}></input>
+          </div>
 
-        <div className="form-group">
-          <label for="email">Email address</label>
-          <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"></input>
-          <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
+          <div className="form-group">
+            <label for="email">Email address</label>
+            <input value={email} type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" onChange={(e) => { setEmail(e.target.value); }}></input>
+            <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
 
-        <div className="form-group">
-          <label for="password">Password</label>
-          <input type="password" className="form-control" id="password" placeholder="Password"></input>
-        </div>
+          <div className="form-group">
+            <label for="password">Password</label>
+            <input value={password.value} type="password" className="form-control" id="password" placeholder="Password" onChange={(e) => setPassword({ ...password, value: e.target.value })}></input>
+          </div>
 
-        <div class="form-group">
-          <label for="roleSelect">Role</label>
-          <select class="form-control" id="roleSelect">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select value={role} class="form-control" id="role" onChange={(e) => { setRole(e.target.value); }}>
+              <option value="role">Role</option>
+              <option value="individual">Individual</option>
+              <option value="business">Business</option>
+            </select>
+          </div>
 
-        <button type="submit" className="btn btn-primary">Submit</button>
-      </form>
+          <button type="submit" className="btn btn-primary">Create Account</button>
+        </form>
       </div>
     </div>
   );
