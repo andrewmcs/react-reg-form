@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from 'react';
+import { validateEmail } from './utils.js'
 
 // A compenent specifically to show a password error message 
 const PasswordErrorMessage = () => {
@@ -7,9 +8,20 @@ const PasswordErrorMessage = () => {
     <p className="FieldError">Password should have at least 8 characters</p>
   )
 }
+/*
+Step 4
+Implement the body of getIsFormValid function to return true if the form is valid and false otherwise. 
+This determines the submit button state. The rules for the form to be valid are as follows:
 
-// Step 3
-// Prevent the default behaviour of the form when the user clicks the submit button.
+The first name cannot be empty.
+
+The email must be a valid email address and can't be empty. A function called validateEmail has already been provided for you to check if the email is valid. It returns true if the email is valid, otherwise  false is returned.
+
+The password must be at least 8 characters long.
+
+The role must be either individual or business.
+
+*/
 
 function App() {
 
@@ -26,6 +38,15 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  }
+
+  const getIsFormValid = () => {
+    return (
+      firstName &&
+      validateEmail(email) &&
+      password.value.length >= 8 &&
+      role !== "role"
+    );
   }
 
   return (
@@ -74,7 +95,7 @@ function App() {
             </select>
           </div>
 
-          <button type="submit" className="btn btn-primary submitButton">Create Account</button>
+          <button type="submit" className="btn btn-primary submitButton" disabled={!getIsFormValid()}>Create Account</button>
         </form>
       </div>
     </div>
