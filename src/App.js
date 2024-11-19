@@ -8,7 +8,8 @@ const PasswordErrorMessage = () => {
   )
 }
 
-
+// Step 3
+// Prevent the default behaviour of the form when the user clicks the submit button.
 
 function App() {
 
@@ -23,10 +24,14 @@ function App() {
   // setting a default value in useState here
   const [role, setRole] = useState("role");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <div className="App">
       <div className="card formCard" >
-        <form>
+        <form onSubmit={handleSubmit}>
 
           <div className="form-group sm">
             <label for="firstName">First name</label>
