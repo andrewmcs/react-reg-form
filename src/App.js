@@ -1,6 +1,15 @@
 import './App.css';
 import { useState } from 'react';
 
+// A compenent specifically to show a password error message 
+const PasswordErrorMessage = () => {
+  return (
+    <p className="FieldError">Password should have at least 8 characters</p>
+  )
+}
+
+
+
 function App() {
 
   const [firstName, setFirstName] = useState("");
@@ -16,7 +25,7 @@ function App() {
 
   return (
     <div className="App">
-      <div class="card formCard" >
+      <div className="card formCard" >
         <form>
 
           <div className="form-group sm">
@@ -38,7 +47,17 @@ function App() {
 
           <div className="form-group">
             <label for="password">Password</label>
-            <input value={password.value} type="password" className="form-control" id="password" placeholder="Password" onChange={(e) => setPassword({ ...password, value: e.target.value })}></input>
+            <input value={password.value} type="password" className="form-control"
+              id="password" placeholder="Password"
+              onChange={(e) => setPassword({ ...password, value: e.target.value })}
+              onBlur={(e) => setPassword({ ...password, isTouched: true })}>
+            </input>
+            {/* conditionally render an error message when the password has been touched and is too short. */}
+            {
+              password.isTouched && password.value.length < 8
+                ? (<PasswordErrorMessage />)
+                : null
+            }
           </div>
 
           <div class="form-group">
@@ -50,7 +69,7 @@ function App() {
             </select>
           </div>
 
-          <button type="submit" className="btn btn-primary">Create Account</button>
+          <button type="submit" className="btn btn-primary submitButton">Create Account</button>
         </form>
       </div>
     </div>
