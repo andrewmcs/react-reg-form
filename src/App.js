@@ -9,18 +9,8 @@ const PasswordErrorMessage = () => {
   )
 }
 /*
-Step 4
-Implement the body of getIsFormValid function to return true if the form is valid and false otherwise. 
-This determines the submit button state. The rules for the form to be valid are as follows:
-
-The first name cannot be empty.
-
-The email must be a valid email address and can't be empty. A function called validateEmail has already been provided for you to check if the email is valid. It returns true if the email is valid, otherwise  false is returned.
-
-The password must be at least 8 characters long.
-
-The role must be either individual or business.
-
+Step 5
+Implement the body of clearForm function to clear the form state after a successful submission.
 */
 
 function App() {
@@ -36,8 +26,18 @@ function App() {
   // setting a default value in useState here
   const [role, setRole] = useState("role");
 
+  const clearForm = () => {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setPassword({value: "", isTouched: false,});
+    setRole("role");
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    clearForm();
+    
   }
 
   const getIsFormValid = () => {
@@ -48,6 +48,8 @@ function App() {
       role !== "role"
     );
   }
+
+  
 
   return (
     <div className="App">
