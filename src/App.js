@@ -8,10 +8,7 @@ const PasswordErrorMessage = () => {
     <p className="FieldError">Password should have at least 8 characters</p>
   )
 }
-/*
-Step 5
-Implement the body of clearForm function to clear the form state after a successful submission.
-*/
+
 
 function App() {
 
@@ -36,6 +33,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    alert("Account created!");
     clearForm();
     
   }
